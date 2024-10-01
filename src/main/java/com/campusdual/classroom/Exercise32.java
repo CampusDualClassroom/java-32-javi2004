@@ -3,16 +3,21 @@ package com.campusdual.classroom;
 import com.campusdual.util.Utils;
 
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Exercise32 {
 
     public static void main(String[] args) {
-
+        printToFile(generateUserInputToSave());
     }
 
     public static String generateStringToSave(String string) {
+        if (string == null){
+             generateUserInputToSave();
+        }
+        return string;
 
     }
 
@@ -27,7 +32,11 @@ public class Exercise32 {
     }
 
     public static void printToFile(String string) {
-
+        try (PrintWriter out = new PrintWriter("src/main/resources/data.txt")) {
+            out.println(string);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
